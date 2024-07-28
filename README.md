@@ -45,10 +45,6 @@ Here is a list of user stories that the application covers:
    ```bash
    $ npm i -g @cartesi/cli
    ```
-   + Nonodo:
-   ```bash
-   $ npm i nonodo
-   ```
    + Foundry:
    Follow the instruction [here](https://book.getfoundry.sh/getting-started/installation)
 
