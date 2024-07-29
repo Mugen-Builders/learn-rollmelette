@@ -3,7 +3,7 @@
 </div>
 <br>
 <div align="center">
-    <i>An example in Golang using Cartesi CLI, Nonodo, and Rollmelette as frameworks</i>
+    <i>An example in Golang using Cartesi CLI, Nonodo, and Rollmelette</i>
 </div>
 <div align="center">
 This example aims to demonstrate the lifecycle of a Cartesi DApp through unit tests using Rollmelette as a framework.
