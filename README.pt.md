@@ -50,7 +50,7 @@ Here is a list of user stories that the application covers:
 
 2º - Clone este repositório usando o código abaixo:
 ```Bash
-git clone --recursive git@github.com:Mugen-Builders/learn-deroll.git
+git clone https://github.com/Mugen-Builders/learn-rollmelette.git
 ```
 
 ## Rodando os testes:
