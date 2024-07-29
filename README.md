@@ -50,7 +50,7 @@ Here is a list of user stories that the application covers:
 
 2º - Clone this repo using the code below:
 ```bash
-git clone --recursive git@github.com:Mugen-Builders/learn-rollmelette.git
+git clone https://github.com/Mugen-Builders/learn-rollmelette.git
 ```
 
 ## Running the tests:
