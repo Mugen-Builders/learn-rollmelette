@@ -6,7 +6,7 @@
     <i>An example in Golang using Cartesi CLI, Nonodo, and Rollmelette</i>
 </div>
 <div align="center">
-<b>This example aims to demonstrate the lifecycle of a Cartesi DApp through unit tests using Rollmelette as a framework.</b>
+<b>This example aims to demonstrate the lifecycle of a Cartesi DApp through unit tests using Rollmelette as a framework. In addition to being a template for developing dApps, it serves as a template for integration with Avail.</b>
 </div>
 <br>
 <div align="center">
@@ -62,3 +62,51 @@ make test
 
 > [!NOTE]
 > All user stories covered here can also be fulfilled using the CLI. For more information, please refer to the [documentation](https://docs.cartesi.io/cartesi-rollups/1.3/).
+
+## Avail Integration + Cartesi bare metal:
+This section will help you set up a Cartesi dApp with Avail on your local machine. You'll be able to send transactions either directly through Cartesi Rollups Smart Contracts on L1 or via Avail DA using EIP-712 signed messages. You'll also learn how to check the dApp's state and outputs using Cartesi Rollups Framework APIs.
+
+### Requirements:
+As a reference for setting up your machine, [follow these steps](https://github.com/Mugen-Builders/cartesi-avail-tutorial?tab=readme-ov-file#prerequisites)
+
+### Running your node locally ( A mocked implementation ):
+
+- Start brunodo using the command with the flag with the flag that enables integration with Avail:
+
+```bash
+$ brunodo
+```
+
+- Build your machine:
+```bash
+$ cartesi build
+```
+
+- Run the Cartesi Machine Locally on bare metal using the command:
+
+```bash
+$ cartesi-machine --network \
+ --flash-drive=label:root,filename:.cartesi/image.ext2 \
+ --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004 -- /var/opt/cartesi-app/app
+```
+
+### Running your node locally with a testnet:
+
+- Start brunodo using the command with the flag with the flag that enables integration with Avail:
+
+```bash
+$ brunodo --avail-enabled -d --contracts-input-box-block 6850934 --rpc-url https://sepolia.drpc.org
+```
+
+- Build your machine:
+```bash
+$ cartesi build
+```
+
+- Run the Cartesi Machine Locally on bare metal using the command:
+
+```bash
+$ cartesi-machine --network \
+ --flash-drive=label:root,filename:.cartesi/image.ext2 \
+ --env=ROLLUP_HTTP_SERVER_URL=http://10.0.2.2:5004 -- /var/opt/cartesi-app/app
+```

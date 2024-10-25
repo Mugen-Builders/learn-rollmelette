@@ -4,7 +4,6 @@ import (
 	"context"
 	"log/slog"
 	"os"
-
 	"github.com/rollmelette/rollmelette"
 )
 

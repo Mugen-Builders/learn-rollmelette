@@ -1,27 +1,10 @@
-################################################################################
 # cross build stage
-FROM ubuntu:22.04 as build-stage
-
-ARG DEBIAN_FRONTEND=noninteractive
-RUN <<EOF
-set -e
-apt update
-apt upgrade -y
-apt install -y --no-install-recommends \
-    build-essential \
-    ca-certificates \
-    g++-riscv64-linux-gnu \
-    wget
-EOF
-
-ARG GOVERSION=1.22.1
-
+FROM golang:1.22.1-bookworm AS build
+ARG APP_NAME
 WORKDIR /src
 
-RUN wget https://go.dev/dl/go${GOVERSION}.linux-$(dpkg --print-architecture).tar.gz && \
-    tar -C /usr/local -xzf go${GOVERSION}.linux-$(dpkg --print-architecture).tar.gz
-
-ENV PATH=/usr/local/go/bin:${PATH}
+# Install Go dependencies
+RUN apt-get update && apt-get install -y gcc g++-riscv64-linux-gnu
 
 # Download dependencies as a separate step to take advantage of Docker's caching.
 # Leverage a cache mount to /go/pkg/mod/ to speed up subsequent builds.
@@ -48,8 +31,8 @@ ADD https://github.com/cartesi/machine-emulator-tools/releases/download/v${MACHI
 RUN dpkg -i /machine-emulator-tools-v${MACHINE_EMULATOR_TOOLS_VERSION}.deb \
   && rm /machine-emulator-tools-v${MACHINE_EMULATOR_TOOLS_VERSION}.deb
 
-LABEL io.cartesi.rollups.sdk_version=0.9.0
-LABEL io.cartesi.rollups.ram_size=128Mi
+  LABEL io.cartesi.rollups.sdk_version=0.9.0
+  LABEL io.cartesi.rollups.ram_size=128Mi
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN <<EOF
@@ -63,12 +46,9 @@ EOF
 
 WORKDIR /var/opt/cartesi-app
 
-# TODO: how can i see the file system tree to choose the right permissions?
-RUN chown -R dapp:dapp .
-
 ENV PATH="/opt/cartesi/bin:${PATH}"
 
-COPY --from=build-stage /bin/app app
+COPY --from=build /bin/app app
 
 ENTRYPOINT ["rollup-init"]
 
