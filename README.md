@@ -6,7 +6,7 @@
     <i>An example in Golang using Cartesi CLI, Nonodo, and Rollmelette</i>
 </div>
 <div align="center">
-<b>This example aims to demonstrate the lifecycle of a Cartesi DApp through unit tests using Rollmelette as a framework. In addition to being a template for developing dApps, it serves as a template for integration with Avail.</b>
+<b>This example aims to demonstrate the lifecycle of a Cartesi DApp through unit tests using Rollmelette as a framework. In addition it serves as a template for integration with Avail.</b>
 </div>
 <br>
 <div align="center">
